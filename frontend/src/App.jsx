@@ -3,7 +3,7 @@ import ChatWindow from "./ChatWindow.jsx";
 import Sidebar from "./Sidebar.jsx";
 import {MyContext} from "./MyContext.jsx";
 import './App.css';
-import {useState} from "react";
+import { useState} from "react";
 import {v1 as uuidv4} from "uuid";
 
 function App() {

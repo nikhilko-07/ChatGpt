@@ -71,13 +71,13 @@ export default function ChatWindow() {
                 {isOpen && (
                     <div className={"dropDown"}>
                         <div className={"dropDownItem"}>
-                            <i className="fa-solid fa-up-right-from-square"></i> Upgrade Plan
+                            <i className="fa-solid fa-up-right-from-square"></i>&nbsp; Upgrade Plan
                         </div>
                         <div className={"dropDownItem"}>
-                            <i className="fa-solid fa-gear"></i> Setting
+                            <i className="fa-solid fa-gear"></i>&nbsp; Setting
                         </div>
                         <div className={"dropDownItem"}>
-                            <i className="fa-solid fa-arrow-right-from-bracket"></i> Log out
+                            <i className="fa-solid fa-arrow-right-from-bracket"></i>&nbsp; Log out
                         </div>
                     </div>
                 )}

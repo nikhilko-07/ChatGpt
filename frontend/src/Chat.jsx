@@ -6,7 +6,7 @@ import rehypeHighlight from "rehype-highlight";
 import 'highlight.js/styles/github-dark.css';
 
 export default function Chat(){
-    const {newChats,prevChats, reply} = useContext(MyContext);
+    const {newChats, prevChats, reply} = useContext(MyContext);
     const[latestReply,setLatestReply]=useState(null);
 
     useEffect(()=>{
@@ -28,23 +28,35 @@ export default function Chat(){
         {prevChats.length == 0 && <h1>Start a New Chat!</h1>}
         <div className="chats">
             {
-                prevChats?.map((chat,idx)=>
+                prevChats?.slice(0, -1).map((chat, idx) =>
                     <div className={chat.role === "user"? "userDiv" : "gptDiv"} key={idx}>
                         {
                             chat.role === "user"?
-                                <p className={"userMessage"}>{chat.content}</p> :
+                                <p className="userMessage">{chat.content}</p> :
                                 <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{chat.content}</ReactMarkdown>
                         }
                     </div>
                 )
             }
-            {
-                prevChats.length > 0 && latestReply !== null &&
-                <div className={"gptDiv"} key={"typing"}>
-                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown>
-                </div>
-            }
 
+            {
+                prevChats.length > 0  && (
+                    <>
+                        {
+                            latestReply === null ? (
+                                <div className="gptDiv" key={"non-typing"} >
+                                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{prevChats[prevChats.length-1].content}</ReactMarkdown>
+                                </div>
+                            ) : (
+                                <div className="gptDiv" key={"typing"} >
+                                    <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{latestReply}</ReactMarkdown>
+                                </div>
+                            )
+
+                        }
+                    </>
+                )
+            }
         </div>
     </>)
 }

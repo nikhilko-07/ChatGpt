@@ -3,7 +3,7 @@ import './Sidebar.css';
 import {MyContext} from "./MyContext.jsx";
 import {v1 as uuidv4} from "uuid";
 
-export default function Sidebar(){
+export default function  Sidebar(){
     const { allTreads, setAllTreads, currThreadId, setNewChats, setPrompt, setReply, setCurrentThreadId, setPrevChats} = useContext(MyContext);
 
     const getAllThreads = async () => {
@@ -66,7 +66,6 @@ export default function Sidebar(){
         </button>
 
         <ul className={"history"}>
-        <li>history1</li>
             {
                 allTreads?.map((thread, index) => (
                     <li onClick={(e) => changeThread(thread.threadId)} key={index}>{thread.title} <i

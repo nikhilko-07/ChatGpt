@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import chatRoutes from "./routes/chat.js";
 
+
 const app = express();
 const PORT = process.env.PORT || 9000;
 

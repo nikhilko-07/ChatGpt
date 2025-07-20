@@ -17,8 +17,13 @@ router.post("/test",async (req,res)=>{
 });
 
 router.get("/thread", async (req,res)=>{
+
     try {
+
         const thread = await Thread.find({}).sort({updatedAt:-1});
+        if(!thread){
+            return res.status(401).json({error:"No thread found with this id"});
+        }
         res.json(thread); //get the thread in descending order;
     }catch (err){
         res.status(404).json({error:"Error at fetching thread"});
@@ -51,6 +56,7 @@ router.delete("/thread/:threadId", async (req,res)=>{
     }
 });
 
+
 router.post("/chat", async (req,res)=>{
     const {threadId, message} = req.body;
 
@@ -58,6 +64,7 @@ router.post("/chat", async (req,res)=>{
         res.status(404).json({error:"missing required fields"});
     }
     try {
+
         let thread = await Thread.findOne({threadId});
 
         if (!thread) {
